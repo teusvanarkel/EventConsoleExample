@@ -10,8 +10,9 @@ namespace EventConsole
             {
                 var worker = new Worker(manager){ Id = i};
                 var random = new Random();
-                worker.MyStartTime = random.Next(9, 12);
-                worker.MyEndTime = random.Next(13, 17);
+                worker.MyStartTime = random.Next(8, 11);
+                worker.MyBreakTime = random.Next(11, 14);
+                worker.MyEndTime = random.Next(15, 18);
             }
             return workersList;
         }

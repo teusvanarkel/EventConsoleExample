@@ -5,10 +5,4 @@ using EventConsole;
 var company = new Company();
 company.Start();
 
-
-// bool showMenu = true;
-// while (showMenu)
-// {
-//     showMenu = Menu.MainMenu(company.Manager);
-// }
 Console.ReadLine();

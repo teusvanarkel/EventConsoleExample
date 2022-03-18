@@ -4,7 +4,6 @@ namespace EventConsole
     {
         public int WokerId { get; set; }
         public int AmountHours { get; set; }
-
         public int DayNumber { get; set; }
     }
 }

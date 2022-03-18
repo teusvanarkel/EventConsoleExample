@@ -33,9 +33,14 @@ namespace EventConsole
 
         private void ChangeCurrentTime(object sender, EventArgs e)
         {
-            Manager.TimeElapsed();
+            Manager.CurremtTime += 1;
+            if(Manager.CurremtTime == 24)
+            {
+                Manager.CurremtTime = 0;
+            }
             Console.WriteLine("");
-            Console.WriteLine($"CurrentTime = { Manager.CurremtTime}");
+            Console.WriteLine($"CurrentTime = {Manager.CurremtTime}");
+            Manager.TimeElapsed();
         }
     }
 }

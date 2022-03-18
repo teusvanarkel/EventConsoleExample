@@ -4,6 +4,7 @@ namespace EventConsole
     {
         public List<WorkingHour> WorkingHours { get; set; } = new List<WorkingHour>();
         public event EventHandler<int> Work;
+        public event EventHandler<int> Break;
         public event EventHandler<int> Stop;
 
         public int CurremtTime { get; set; } = 6;
@@ -12,31 +13,30 @@ namespace EventConsole
 
         public Manager(Company company)
         {
-            // var timer = new System.Timers.Timer(5000);
-            // timer.Elapsed += TimeElapsed;
-            // timer.AutoReset = true;
-            // timer.Enabled = true;
             _company = company;
         }
 
         public void TimeElapsed()
         {
-            CurremtTime +=1;
-            if (CurremtTime >= 8 && CurremtTime <= 12)
+            if (CurremtTime >= 8 && CurremtTime <= 10)
             {
-                    StartWork();
+                StartWork();
             }
-            else
+            if(CurremtTime >=11 && CurremtTime <= 13);
             {
-                    StopWork();
+                StartBreak();
             }
-            if(CurremtTime == 18)
+            if (CurremtTime >= 15 && CurremtTime <= 18)
+            {
+                StopWork();
+            }
+            if (CurremtTime == 18)
             {
                 CollectWorkingHours();
             }
         }
 
-        
+
 
         private void CollectWorkingHours()
         {
@@ -46,7 +46,7 @@ namespace EventConsole
                 totalWorked += workingHour.AmountHours;
             }
             Console.WriteLine("");
-            Console.WriteLine($"Total hours workerd today:{totalWorked}");
+            Console.WriteLine($"Total hours worked today:{totalWorked}");
             Console.WriteLine("");
         }
 
@@ -63,6 +63,11 @@ namespace EventConsole
         public void StopWork()
         {
             Stop.Invoke(this, CurremtTime);
+        }
+
+        public void StartBreak()
+        {
+            Break.Invoke(this, CurremtTime);
         }
     }
 }
